@@ -17,9 +17,13 @@ ML-проект, демонстрирующий использование Naive
 - streamlit
 
 ## Как запустить
-1. Собрать Docker-образ:
+1. Склонировать репозиторий:
+git clone https://github.com/Nadezhda-G-L/ML_2-sem
+2. Перейдите в папку:
+cd sentiment-analysis
+3. Собрать Docker-образ:
 docker build -t sentiment-analysis
-2. Запустить контейнер:
+4. Запустить контейнер:
 docker run -p 8501:8501 sentiment-analysis
-3. Открыть в браузере:
+5. Открыть в браузере:
 http://localhost:8501
