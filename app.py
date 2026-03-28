@@ -9,9 +9,7 @@ import os
 
 st.title("Определение тональности текста")
 
-# --- 1. Загрузка и обучение модели
-st.subheader("Обучение модели")
-st.write("Обучаю модель на тестовых данных...")
+# 1. Загрузка и обучение модели
 
 # Данные
 data = {
@@ -36,19 +34,19 @@ model = MultinomialNB()
 model.fit(X_train_tfidf, y_train)
 y_pred = model.predict(X_test_tfidf)
 
-# --- 2. Вывод метрик
-st.subheader("Метрики модели")
-st.write(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
-st.text(classification_report(y_test, y_pred))
+# 2. Вывод метрик
+# st.subheader("Метрики модели")
+# st.write(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
+# st.text(classification_report(y_test, y_pred))
 
-# --- 3. Визуализация матрицы ошибок
+# 3. Визуализация матрицы ошибок
 cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['Negative', 'Positive'])
 fig, ax = plt.subplots()
 disp.plot(ax=ax)
-st.pyplot(fig)
+# st.pyplot(fig)
 
-# --- 4. Обработка пользовательского ввода
+# 4. Обработка пользовательского ввода
 st.subheader("Проверка тональности текста")
 user_text = st.text_area("Введите текст")
 
@@ -58,7 +56,6 @@ if user_text:
     sentiment = "Позитивный" if prediction == 1 else "Негативный"
     st.success(f"Тональность текста: **{sentiment}**")
 
-# --- 5. Сохранение графика
+# 5. Сохранение графика
 os.makedirs("output", exist_ok=True)
 plt.savefig("output/plot.png")
-st.image("output/plot.png", caption="Матрица ошибок")
